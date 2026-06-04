@@ -12,13 +12,14 @@
             <a href="/" class="text-xl font-bold text-gray-800">My Web App</a>
             <div>
                 @auth
-                    <a href="/dashboard" class="text-gray-600 hover:text-gray-800 mr-4">Dashboard</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800 mr-4">掲示板へ</a>
                     <form action="/logout" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-gray-600 hover:text-gray-800">Logout</button>
+                        <button type="submit" class="text-gray-600 hover:text-gray-800">ログアウト</button>
                     </form>
                 @else
-                    <a href="/auth/redirect" class="text-gray-600 hover:text-gray-800">Login with GitHub</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800 mr-4">レポート作成</a>
+                    <a href="/auth/redirect" class="text-gray-600 hover:text-gray-800">GitHubでログイン</a>
                 @endauth        
             </div>
         </div>
