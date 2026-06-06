@@ -5,11 +5,14 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\GenerateController;
 
 Route::get('/', function () {
     return view('home');
 });
 Route::resource('forums', ForumController::class);
+Route::get('/generate', [GenerateController::class, 'index']);
+Route::post('/generate', [GenerateController::class, 'generate'])->name('generate');
 
 //　認証にLaravel Socialiteを使用。
 Route::get('/auth/redirect', [OAuthController::class, 'redirectToProvider']);

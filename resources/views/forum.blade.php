@@ -17,7 +17,9 @@
         <tbody>
             @foreach ($forums as $forum)
             <tr>
-                <td>{{ $forum->title }}</td>
+                <td class="py-2 px-4 border-b">
+                    <a href="{{ route('forums.show', $forum) }}" class="text-blue-500 hover:underline">{{ $forum->title }}</a>
+                </td>
                 <td>{{ $forum->content }}</td>
             </tr>
             @endforeach

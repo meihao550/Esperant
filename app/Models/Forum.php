@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
-    //
+    protected $fillable = [
+        'author',
+        'title',
+        'content',
+        'body',
+    ];
 }
