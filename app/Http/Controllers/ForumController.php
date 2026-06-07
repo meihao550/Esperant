@@ -13,7 +13,7 @@ class ForumController extends Controller
     public function index()
     {
         $forums = Forum::latest()->get();
-        return view('forum', [
+        return view('forum.index', [
             'forums' => $forums,
         ]);
     }
@@ -23,7 +23,7 @@ class ForumController extends Controller
      */
     public function create()
     {
-        //
+        return view('forum.create');
     }
 
     /**
@@ -31,7 +31,9 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|min:20|max:20'
+        ]);
     }
 
     /**

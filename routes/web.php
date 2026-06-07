@@ -10,12 +10,12 @@ use App\Http\Controllers\GenerateController;
 Route::get('/', function () {
     return view('home');
 });
-Route::resource('forums', ForumController::class);
+Route::resource('/forums', ForumController::class)->middleware('auth'); //認証されていなければloginにルート
 Route::get('/generate', [GenerateController::class, 'index']);
 Route::post('/generate', [GenerateController::class, 'generate'])->name('generate');
 
 //　認証にLaravel Socialiteを使用。
-Route::get('/auth/redirect', [OAuthController::class, 'redirectToProvider']);
+Route::get('/auth/redirect', [OAuthController::class, 'redirectToProvider'])->name('login');
 Route::get('/auth/callback', [OAuthController::class, 'handleProviderCallback']);
 
 Route::middleware('auth')->group(function () {

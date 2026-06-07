@@ -6,7 +6,9 @@
     <div class="mb-4">
         <a href="{{ route('forums.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">新規投稿</a>
     </div>
+    @auth
     <p class="mb-4">あなたのユーザーIDは{{ auth()->user()->name }}</p>
+    @endauth
     <table class="min-w-full bg-white">
             <thead>
                 <tr>
