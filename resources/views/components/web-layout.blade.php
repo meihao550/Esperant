@@ -22,7 +22,7 @@
                 @else
                     <a href="#" class="text-gray-600 hover:text-gray-800 mr-4">レポート作成</a>
                     <a href="generate" class='text-gray-600 hover:text-gray-800 mr-4'>参考文献生成</a>
-                    <a href="/auth/redirect" class="text-gray-600 hover:text-gray-800">GitHubでログイン</a>
+                    <a href="{{ route("login") }}" class="text-gray-600 hover:text-gray-800">GitHubでログイン</a>
                 @endauth        
             </div>
         </div>
