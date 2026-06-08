@@ -34,7 +34,7 @@ class OAuthController extends Controller
             return redirect('/')->with('success', 'GitHubログインに成功しました！');
 
         } catch (Exception $e) {
-            return redirect('/login')->with('error', '認証に失敗しました: ' . $e->getMessage());
+            return redirect(route('login'))->with('error', '認証に失敗しました: ' . $e->getMessage());
         }
     }
 }
