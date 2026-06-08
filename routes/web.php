@@ -11,6 +11,7 @@ Route::get('/', function () {
     return view('home');
 });
 Route::resource('/forums', ForumController::class)->middleware('auth'); //認証されていなければloginにルート
+Route::post('/forums/{forum}/reply', [ForumController::class, 'reply'])->name('forums.reply')->middleware('auth'); //viewのformルートのためにエイリアスの作成
 Route::get('/generate', [GenerateController::class, 'index']);
 Route::post('/generate', [GenerateController::class, 'generate'])->name('generate');
 

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
-    protected $fillable = [
-        'author',
-        'title',
-        'content',
-        'body',
-    ];
+    protected $fillable = ['title', 'content', 'author'];
+
+    // Forumは複数のReplyを持つ
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }
