@@ -14,7 +14,7 @@
             <a href="{{ route('forums.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">新規投稿</a>
         </div>
         @auth
-        <p class="mb-4">あなたのユーザーIDは{{ auth()->user()->name }}</p>
+        <p class="mb-4">あなたのユーザーIDは{{ Auth::user()->name }}</p>
         @endauth
         <table class="min-w-full bg-white">
                 <thead>
@@ -30,6 +30,15 @@
                         <a href="{{ route('forums.show', $forum) }}" class="text-blue-500 hover:underline">{{ $forum->title }}</a>
                     </td>
                     <td>{{ $forum->content }}</td>
+                    <td>
+                        @if(Auth::user()->name === $forum->author)
+                            <form action="{{ route('forums.destroy', $forum)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="削除">
+                            </form>
+                        @endif
+                    </td>
                     <td>
                         @if(Auth::user()->name === $forum->author)
                             <a href="{{ route('forums.edit', $forum) }}">編集</a>

@@ -56,6 +56,11 @@ class ForumController extends Controller
         ]);
     }
 
+    /**
+     * 返信用メソッド
+     * リソースコントローラーとは別のメソッド
+     * ForumModelにhasMany()を作っている。
+     */
     public function reply(Request $request, Forum $forum)
     {
         $validated = $request->validate([
@@ -84,8 +89,8 @@ class ForumController extends Controller
     public function update(Request $request, Forum $forum)
     {
         $validated = $request->validate([
-            'title' => ['required'],
-            'content' => ['required'],
+            'title' => 'required|min:1',
+            'content' => 'required|min:5',
         ]);
         $forum->update($validated);
         return redirect()->route('forums.index');
@@ -96,5 +101,15 @@ class ForumController extends Controller
      */
     public function destroy(Forum $forum)
     {
+        if(Auth::user()->name !== $forum->author) {
+            abort(404);
+        }
+        
+        /**
+         * forumテーブルから行を削除する。
+         */
+        $forum->delete();
+
+        return redirect()->route('forums.index');
     }
 }

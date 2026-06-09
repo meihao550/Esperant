@@ -4,4 +4,6 @@
     @else
     <p>ログインしていません。</p>
     @endauth
+
+    <p>{{ request()->path() }}</p>
 </x-web-layout>
