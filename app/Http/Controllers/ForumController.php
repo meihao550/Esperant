@@ -72,7 +72,10 @@ class ForumController extends Controller
      */
     public function edit(Forum $forum)
     {
-        //
+        if(Auth::user()->name !== $forum->author) {
+            abort(404);
+        }
+        return view('forum.edit', ['forum' => $forum]);
     }
 
     /**
@@ -80,7 +83,12 @@ class ForumController extends Controller
      */
     public function update(Request $request, Forum $forum)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['required'],
+            'content' => ['required'],
+        ]);
+        $forum->update($validated);
+        return redirect()->route('forums.index');
     }
 
     /**
@@ -88,6 +96,5 @@ class ForumController extends Controller
      */
     public function destroy(Forum $forum)
     {
-        //
     }
 }

@@ -30,9 +30,14 @@
                         <a href="{{ route('forums.show', $forum) }}" class="text-blue-500 hover:underline">{{ $forum->title }}</a>
                     </td>
                     <td>{{ $forum->content }}</td>
+                    <td>
+                        @if(Auth::user()->name === $forum->author)
+                            <a href="{{ route('forums.edit', $forum) }}">編集</a>
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-</x-web-layout>
+</x-web-layout> 
