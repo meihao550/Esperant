@@ -120,7 +120,6 @@ composer run dev
 > ```bash
 > php artisan serve
 > php artisan queue:listen --tries=1 --timeout=0
-> npm run dev
 > ```
 >
 > または [WSL2](https://learn.microsoft.com/ja-jp/windows/wsl/install) 上で実行することを推奨します。
@@ -130,3 +129,7 @@ composer run dev
 ```bash
 composer run test
 ```
+
+## シードデータ
+php artisan db:seed
+このコマンド一つでアカウント情報、掲示板の投稿、返信のシーダーを実行できる。
