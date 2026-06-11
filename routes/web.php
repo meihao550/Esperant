@@ -6,6 +6,7 @@ use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\GenerateController;
+use App\Http\Controllers\GeminiTestController;
 
 Route::get('/', function () {
     return view('home');
@@ -24,3 +25,6 @@ Route::middleware('auth')->group(function () {
 });
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+// AI
+Route::get('/gemini-test', [GeminiTestController::class, 'index']);
+Route::post('/gemini-test', [GeminiTestController::class, 'review'])->name('gemini-review');
