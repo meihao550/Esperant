@@ -105,12 +105,6 @@ touch database/database.sqlite
 php artisan migrate
 ```
 
-### 7. フロントエンドをビルド
-
-```bash
-npm run build
-```
-
 ### 8. 起動
 
 ```bash
@@ -118,6 +112,18 @@ composer run dev
 ```
 
 `http://localhost:8000` でアクセスできます。
+
+> **Windows ユーザーへ**
+> このプロジェクトは Mac 環境で開発されています。`composer run dev` は内部で Laravel Pail を使用しており、Pail が依存する `pcntl` PHP 拡張が Windows では利用できないためエラーが発生します。
+> Windows の場合は以下のコマンドをそれぞれ別のターミナルで実行してください。
+>
+> ```bash
+> php artisan serve
+> php artisan queue:listen --tries=1 --timeout=0
+> npm run dev
+> ```
+>
+> または [WSL2](https://learn.microsoft.com/ja-jp/windows/wsl/install) 上で実行することを推奨します。
 
 ## テスト
 
