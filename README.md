@@ -26,6 +26,7 @@
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
 
 ### 開発ツール
+![Herd](https://img.shields.io/badge/Laravel_Herd-FF2D20?logo=laravel&logoColor=white)
 ![Pest](https://img.shields.io/badge/Pest-PHP_Testing-F19D38?logo=php&logoColor=white)
 ![Pint](https://img.shields.io/badge/Laravel_Pint-Linter-FF2D20?logo=laravel&logoColor=white)
 
@@ -38,6 +39,7 @@
 | 認証 | Laravel Socialite 5 | GitHub OAuthログイン |
 | AI | Laravel AI 0.7 / Gemini | 日本語文体チェック |
 | DB | SQLite | データ永続化 |
+| ローカル開発 | Laravel Herd | ローカルサーバー・PHP管理 |
 | コード品質 | Laravel Pint | コードフォーマッター |
 | テスト | Pest 4 / Faker | 自動テスト・ダミーデータ生成 |
 
