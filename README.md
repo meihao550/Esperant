@@ -10,17 +10,36 @@
 
 ## 使用技術
 
+### バックエンド
 ![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?logo=php&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss&logoColor=white)
+![Composer](https://img.shields.io/badge/Composer-2-885630?logo=composer&logoColor=white)
 
-| カテゴリ | 技術 |
-|----------|------|
-| バックエンド | PHP 8.3 / Laravel 13 |
-| フロントエンド | Blade / Tailwind CSS / Vite |
-| 認証 | Laravel Socialite (GitHub OAuth) |
-| AI | Laravel AI (`laravel/ai`) / Gemini |
-| テスト | Pest |
+### フロントエンド
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-24-5FA04E?logo=nodedotjs&logoColor=white)
+
+### 認証・AI・DB
+![GitHub OAuth](https://img.shields.io/badge/GitHub_OAuth-181717?logo=github&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_AI-8E75B2?logo=googlegemini&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
+
+### 開発ツール
+![Pest](https://img.shields.io/badge/Pest-PHP_Testing-F19D38?logo=php&logoColor=white)
+![Pint](https://img.shields.io/badge/Laravel_Pint-Linter-FF2D20?logo=laravel&logoColor=white)
+
+---
+
+| カテゴリ | 技術・ライブラリ | 用途 |
+|----------|----------------|------|
+| バックエンド | PHP 8.3 / Laravel 13 | アプリケーション本体 |
+| フロントエンド | Blade / Tailwind CSS / Vite | UIテンプレート・スタイリング・バンドル |
+| 認証 | Laravel Socialite 5 | GitHub OAuthログイン |
+| AI | Laravel AI 0.7 / Gemini | 日本語文体チェック |
+| DB | SQLite | データ永続化 |
+| コード品質 | Laravel Pint | コードフォーマッター |
+| テスト | Pest 4 / Faker | 自動テスト・ダミーデータ生成 |
 
 ## セットアップ
 
@@ -30,7 +49,6 @@
 - Composer
 - Node.js 18 以上
 - Git
-- プロジェクトリーダーはHerdを使用してセットアップしている。
 
 ### 1. リポジトリをクローン
 
