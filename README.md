@@ -43,7 +43,75 @@
 | コード品質 | Laravel Pint | コードフォーマッター |
 | テスト | Pest 4 / Faker | 自動テスト・ダミーデータ生成 |
 
-## セットアップ
+## Devcontainer での環境構築（推奨）
+
+[Dev Container](https://containers.dev/) を使うと、PHP 8.4 / Node.js 22 / Composer / MySQL / Redis がすべてコンテナ内に揃った状態で開発を始められます。OS を問わず（Mac / Windows / Linux）同じ環境を再現でき、`pcntl` などの拡張も最初から有効です。
+
+### 必要なもの
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)（Windows / Mac）または Docker Engine（Linux）
+- [Visual Studio Code](https://code.visualstudio.com/)
+- VS Code 拡張機能 [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)（`ms-vscode-remote.remote-containers`）
+
+### 手順
+
+1. **リポジトリをクローンして VS Code で開く**
+
+   ```bash
+   git clone <リポジトリURL>
+   cd <クローンしたディレクトリ>
+   code .
+   ```
+
+2. **コンテナで再オープン**
+
+   VS Code 右下に表示される **「Reopen in Container」** をクリックします。表示されない場合はコマンドパレット（`F1` / `Ctrl+Shift+P`）から **Dev Containers: Reopen in Container** を実行してください。
+
+   初回はイメージのビルドが走ります（数分）。完了すると `.devcontainer/post-create.sh` が自動で以下を実行します。
+
+   - `.env` が無ければ `.env.example` からコピー
+   - `composer install`
+   - `APP_KEY` が無ければ `php artisan key:generate`
+   - `npm install`
+   - `php artisan migrate --force`
+
+3. **API キーを設定**
+
+   フォーラム以外の機能（GitHub ログイン・文体チェッカー）を使う場合は、生成された `.env` に下記を設定します（取得方法は後述の「[4. GitHub OAuth アプリを作成](#4-github-oauth-アプリを作成)」「[5. Gemini API キーを取得](#5-gemini-api-キーを取得)」を参照）。
+
+   ```env
+   GITHUB_CLIENT_ID=your_client_id
+   GITHUB_CLIENT_SECRET=your_client_secret
+   GITHUB_REDIRECT_URL=http://localhost:8000/auth/callback
+   GEMINI_API_KEY=your_api_key
+   ```
+
+4. **起動**
+
+   ```bash
+   composer run dev
+   ```
+
+   ホスト側の `http://localhost:8000` でアクセスできます。`8000`（Laravel）・`5173`（Vite）・`3306`（MySQL）・`6379`（Redis）のポートは自動でフォワードされます。
+
+### 構成について
+
+| サービス | 内容 |
+|----------|------|
+| `app` | PHP 8.4 + Composer + Node.js 22。Xdebug・Redis 拡張入り |
+| `mysql` | MySQL 8.0（DB: `laravel` / ユーザー: `laravel` / パスワード: `secret` / root: `root`） |
+| `redis` | Redis 7 |
+
+> **データベースについて**
+> 既定の `.env`（`.env.example` 由来）は `DB_CONNECTION=sqlite` で、SQLite を使います。MySQL / Redis コンテナも併せて起動しているので、利用する場合は `.env` の `DB_CONNECTION=mysql` と `DB_HOST=mysql`、`REDIS_HOST=redis` などを設定し直してから `php artisan migrate` を実行してください。
+
+VS Code には Intelephense・Laravel Blade・PHP Debug などの拡張機能が自動でインストールされ、保存時フォーマットも有効になります。
+
+---
+
+## セットアップ（ローカル環境）
+
+> Devcontainer を使わず、ホスト環境に直接構築する場合の手順です。
 
 Laravel Herdをインストールすれば、以下のComposer、PHPなどインストールしてくれるのでおすすめ。
 ### 必要な環境
