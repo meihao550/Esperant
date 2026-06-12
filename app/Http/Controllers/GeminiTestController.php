@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Ai\Agents\ConnectAi;
+use Illuminate\Http\Request;
 
 class GeminiTestController extends Controller
 {
@@ -45,7 +45,7 @@ class GeminiTestController extends Controller
                 'type'       => '接続詞',
             ],
         ]; */
-        //1-2 本番やテストの際オンにする。レート制限回避用
+        // 1-2 本番やテストの際オンにする。レート制限回避用
         $response = (new ConnectAi)
             ->prompt($request->report,
                 timeout: 120,
@@ -55,7 +55,7 @@ class GeminiTestController extends Controller
 
         return view('gemini.test', [
             'suggestions' => $suggestions,
-            'original'    => $request->report,
+            'original' => $request->report,
         ]);
 
     }

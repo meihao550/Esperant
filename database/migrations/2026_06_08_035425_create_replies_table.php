@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('author');       // 投稿者名
             $table->text('content');        // 返信内容
             $table->foreignId('forum_id')  // どのスレッドへの返信か
-               ->constrained()         // forumsテーブルのidと紐づけ
-               ->cascadeOnDelete();    // スレッド削除時に返信も一緒に削除
+                ->constrained()         // forumsテーブルのidと紐づけ
+                ->cascadeOnDelete();    // スレッド削除時に返信も一緒に削除
             $table->timestamps();
         });
     }

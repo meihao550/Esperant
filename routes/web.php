@@ -1,18 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\OAuthController;
-use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ForumController;
-use App\Http\Controllers\GenerateController;
 use App\Http\Controllers\GeminiTestController;
+use App\Http\Controllers\GenerateController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\OAuthController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
-Route::resource('/forums', ForumController::class)->middleware('auth'); //認証されていなければloginにルート
-Route::post('/forums/{forum}/reply', [ForumController::class, 'reply'])->name('forums.reply')->middleware('auth'); //viewのformルートのためにエイリアスの作成
+Route::resource('/forums', ForumController::class)->middleware('auth'); // 認証されていなければloginにルート
+Route::post('/forums/{forum}/reply', [ForumController::class, 'reply'])->name('forums.reply')->middleware('auth'); // viewのformルートのためにエイリアスの作成
 Route::get('/generate', [GenerateController::class, 'index']);
 Route::post('/generate', [GenerateController::class, 'generate'])->name('generate');
 
