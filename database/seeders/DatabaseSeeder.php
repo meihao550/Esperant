@@ -2,19 +2,27 @@
 
 namespace Database\Seeders;
 
+use App\Models\Forum;
+use App\Models\Reply;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        $this->call(ForumSeeder::class);
+        // 外部キー制約を一時的に無効化してトランケート（SQLite/MySQL 両対応）
+        Schema::disableForeignKeyConstraints();
+        Reply::truncate();
+        Forum::truncate();
+        User::truncate();
+        Schema::enableForeignKeyConstraints();
+
+        $this->call([
+            UserSeeder::class,
+            ForumSeeder::class,
+            ReplySeeder::class,
+        ]);
     }
 }

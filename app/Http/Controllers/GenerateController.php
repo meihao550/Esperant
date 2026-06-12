@@ -10,6 +10,7 @@ class GenerateController extends Controller
     {
         return view('generate');
     }
+
     public function generate(Request $request)
     {
         $valiable = $request->validate([

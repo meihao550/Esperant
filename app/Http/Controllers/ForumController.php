@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use App\Models\Reply;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
@@ -16,6 +15,7 @@ class ForumController extends Controller
     public function index()
     {
         $forums = Forum::latest()->get();
+
         return view('forum.index', [
             'forums' => $forums,
         ]);
@@ -41,6 +41,7 @@ class ForumController extends Controller
 
         $validated['author'] = Auth::user()->name;
         Forum::create($validated);
+
         return redirect('/forums')->with('success', '投稿が保存されました。');
     }
 
@@ -50,6 +51,7 @@ class ForumController extends Controller
     public function show(Forum $forum)
     {
         $replies = $forum->replies()->orderBy('created_at', 'asc')->get();
+
         return view('forum.show', [
             'forum' => $forum,
             'replies' => $replies,
@@ -69,6 +71,7 @@ class ForumController extends Controller
         $validated['author'] = Auth::user()->name;
         $validated['forum_id'] = $forum->id;
         Reply::create($validated);
+
         return redirect()->route('forums.show', $forum);
     }
 
@@ -77,9 +80,10 @@ class ForumController extends Controller
      */
     public function edit(Forum $forum)
     {
-        if(Auth::user()->name !== $forum->author) {
+        if (Auth::user()->name !== $forum->author) {
             abort(404);
         }
+
         return view('forum.edit', ['forum' => $forum]);
     }
 
@@ -93,6 +97,7 @@ class ForumController extends Controller
             'content' => 'required|min:5',
         ]);
         $forum->update($validated);
+
         return redirect()->route('forums.index');
     }
 
@@ -101,10 +106,10 @@ class ForumController extends Controller
      */
     public function destroy(Forum $forum)
     {
-        if(Auth::user()->name !== $forum->author) {
+        if (Auth::user()->name !== $forum->author) {
             abort(404);
         }
-        
+
         /**
          * forumテーブルから行を削除する。
          */

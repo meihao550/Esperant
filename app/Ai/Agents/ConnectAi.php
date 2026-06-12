@@ -2,14 +2,12 @@
 
 namespace App\Ai\Agents;
 
-use Laravel\Ai\Contracts\Agent;
-use Laravel\Ai\Contracts\Conversational;
-use Laravel\Ai\Contracts\HasTools;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Contracts\HasStructuredOutput;
 use Laravel\Ai\Contracts\Tool;
 use Laravel\Ai\Messages\Message;
 use Laravel\Ai\Promptable;
-use Laravel\Ai\Contracts\HasStructuredOutput;
 use Stringable;
 
 class ConnectAi implements Agent, HasStructuredOutput
@@ -21,7 +19,7 @@ class ConnectAi implements Agent, HasStructuredOutput
      */
     public function instructions(): Stringable|string
     {
-        return <<<PROMPT
+        return <<<'PROMPT'
         あなたは日本語レポートの文体チェック専門家です。
         送られてきたレポートを分析して、以下のルールに違反している箇所を全て見つけてください。
 
@@ -52,19 +50,20 @@ class ConnectAi implements Agent, HasStructuredOutput
 - 要約・言い換え・省略は絶対にしないでください
 PROMPT;
     }
-    //Jsonにする
-        public function schema(JsonSchema $schema): array
+
+    // Jsonにする
+    public function schema(JsonSchema $schema): array
     {
         return [
             'suggestions' => $schema->array()
                 ->items(
                     $schema->object(fn ($schema) => [
-                        'original'   => $schema->string()->required(),
+                        'original' => $schema->string()->required(),
                         'suggestion' => $schema->string()->required(),
-                        'reason'     => $schema->string()->required(),
-                        'type'       => $schema->string()
-                                            ->enum(['混在', '句読点', '接続詞', 'ねじれ'])
-                                            ->required(),
+                        'reason' => $schema->string()->required(),
+                        'type' => $schema->string()
+                            ->enum(['混在', '句読点', '接続詞', 'ねじれ'])
+                            ->required(),
                     ])
                 )
                 ->required(),
