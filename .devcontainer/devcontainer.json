@@ -1,0 +1,33 @@
+{
+  "name": "Laravel (PHP 8.4 + MySQL + Redis)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "forwardPorts": [8000, 5173, 3306, 6379],
+  "portsAttributes": {
+    "8000": { "label": "Laravel (artisan serve)" },
+    "5173": { "label": "Vite dev server" },
+    "3306": { "label": "MySQL" },
+    "6379": { "label": "Redis" }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "onecentlin.laravel-blade",
+        "ryannaddy.laravel-artisan",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "EditorConfig.EditorConfig"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "editor.formatOnSave": true
+      }
+    }
+  }
+}
