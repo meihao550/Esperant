@@ -14,7 +14,7 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = Forum::latest()->get();
+        $forums = Forum::query()->paginate(5);
 
         return view('forum.index', [
             'forums' => $forums,
