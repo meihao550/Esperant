@@ -20,7 +20,7 @@ class OAuthController extends Controller
     {
         try {
             // ★ .stateless() を追加します
-            $githubUser = Socialite::driver('github')->stateless()->user();
+            $githubUser = Socialite::driver('github')->user();
 
             $user = User::updateOrCreate([
                 'email' => $githubUser->getEmail(),
