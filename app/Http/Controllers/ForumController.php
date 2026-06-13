@@ -80,9 +80,7 @@ class ForumController extends Controller
      */
     public function edit(Forum $forum)
     {
-        if (Auth::user()->name !== $forum->author) {
-            abort(404);
-        }
+        $this->authorize('update', $forum);
 
         return view('forum.edit', ['forum' => $forum]);
     }
@@ -92,6 +90,8 @@ class ForumController extends Controller
      */
     public function update(Request $request, Forum $forum)
     {
+        $this->authorize('update', $forum);
+
         $validated = $request->validate([
             'title' => 'required|min:1',
             'content' => 'required|min:5',
@@ -106,9 +106,7 @@ class ForumController extends Controller
      */
     public function destroy(Forum $forum)
     {
-        if (Auth::user()->name !== $forum->author) {
-            abort(404);
-        }
+        $this->authorize('delete', $forum);
 
         /**
          * forumテーブルから行を削除する。
