@@ -15,6 +15,8 @@
                 @auth
                     <a href="forums" class="text-gray-600 hover:text-gray-800 mr-4">掲示板へ</a>
                     <a href="#" class="text-gray-600 hover:text-gray-800 mr-4">レポート作成</a>
+                    <a href="generate" class='text-gray-600 hover:text-gray-800 mr-4'>参考文献生成</a>
+                    <a href="gemini-test" class="text-gray-600 hover:text-gray-800 mr-4">レポートチェッカー</a>
                     <form action="/logout" method="POST" class="inline">
                         @csrf
                         <button type="submit" class="text-gray-600 hover:text-gray-800">ログアウト</button>
@@ -22,7 +24,9 @@
                 @else
                     <a href="#" class="text-gray-600 hover:text-gray-800 mr-4">レポート作成</a>
                     <a href="generate" class='text-gray-600 hover:text-gray-800 mr-4'>参考文献生成</a>
+                    <a href="gemini-test" class="text-gray-600 hover:text-gray-800 mr-4">レポートチェッカー</a>
                     <a href="{{ route("login") }}" class="text-gray-600 hover:text-gray-800">GitHubでログイン</a>
+                    
                 @endauth        
             </div>
         </div>
