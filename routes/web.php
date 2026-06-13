@@ -22,7 +22,6 @@ Route::get('/auth/callback', [OAuthController::class, 'handleProviderCallback'])
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
-Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 // AI
 Route::get('/gemini-test', [GeminiTestController::class, 'index']);
